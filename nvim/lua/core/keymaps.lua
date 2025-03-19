@@ -120,33 +120,33 @@ opts.desc = 'Yank to system clipboard'
 vim.keymap.set('n', '<leader>Y', [["+Y]], opts)
 vim.keymap.set({ 'n', 'v' }, '<leader>y', [["+y]], opts)
 
--- Toggle diagnostics
-local diagnostics_active = true
-function ToggleDiagnostics()
-  diagnostics_active = not diagnostics_active
-
-  if diagnostics_active then
-    vim.diagnostic.enable(true)
-  else
-    vim.diagnostic.enable(false)
-  end
-end
-
-vim.keymap.set('n', '<leader>do', ToggleDiagnostics, { desc = 'Toggle diagnostics' })
-
--- Diagnostic keymaps
-opts.desc = 'Go to previous diagnostic message'
-vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, opts)
-
-opts.desc = 'Go to next diagnostic message'
-vim.keymap.set('n', ']d', vim.diagnostic.goto_next, opts)
-
-opts.desc = 'Open floating diagnostic message'
-vim.keymap.set('n', '<leader>d', vim.diagnostic.open_float, opts)
-
-opts.desc = 'Open diagnostics list'
-vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, opts)
-
+-- -- Toggle diagnostics
+-- local diagnostics_active = true
+-- function ToggleDiagnostics()
+--   diagnostics_active = not diagnostics_active
+--
+--   if diagnostics_active then
+--     vim.diagnostic.enable(true)
+--   else
+--     vim.diagnostic.enable(false)
+--   end
+-- end
+--
+-- vim.keymap.set('n', '<leader>do', ToggleDiagnostics, { desc = 'Toggle diagnostics' })
+--
+-- -- Diagnostic keymaps
+-- opts.desc = 'Go to previous diagnostic message'
+-- vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, opts)
+--
+-- opts.desc = 'Go to next diagnostic message'
+-- vim.keymap.set('n', ']d', vim.diagnostic.goto_next, opts)
+--
+-- opts.desc = 'Open floating diagnostic message'
+-- vim.keymap.set('n', '<leader>d', vim.diagnostic.open_float, opts)
+--
+-- opts.desc = 'Open diagnostics list'
+-- vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, opts)
+--
 -- Save and load session
 opts.desc = 'Save session'
 vim.keymap.set('n', '<leader>ss', ':mksession! .session.vim<CR>', opts)
