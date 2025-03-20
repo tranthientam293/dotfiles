@@ -1,1 +1,2 @@
-require('tam293')
+require('core')
+require('package-manager')
