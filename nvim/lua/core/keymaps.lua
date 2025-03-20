@@ -47,7 +47,7 @@ vim.keymap.set('n', '<Tab>', ':bnext<CR>', opts)
 vim.keymap.set('n', '<S-Tab>', ':bprevious<CR>', opts)
 
 opts.desc = 'Close buffer'
-vim.keymap.set('n', '<leader>x', ':Bdelete!<CR>', opts)
+vim.keymap.set('n', '<leader>x', ':bdelete!<CR>', opts)
 
 opts.desc = 'New buffer'
 vim.keymap.set('n', '<leader>b', ': enew <CR>', opts)
