@@ -49,8 +49,8 @@ vim.keymap.set('n', '<S-Tab>', ':bprevious<CR>', opts)
 opts.desc = 'Close buffer'
 vim.keymap.set('n', '<leader>x', ':bdelete!<CR>', opts)
 
-opts.desc = 'New buffer'
-vim.keymap.set('n', '<leader>b', ': enew <CR>', opts)
+-- opts.desc = 'New buffer'
+-- vim.keymap.set('n', '<leader>b', ': enew <CR>', opts)
 
 -- Increment/decrement numbers
 opts.desc = 'Increase number'
