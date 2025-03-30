@@ -22,6 +22,8 @@ return {
         'emmet_ls',
         'html',
         'cssls',
+        'pyright',
+        'tailwindcss'
       },
       automatic_installation = true,
     })

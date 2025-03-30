@@ -1,5 +1,6 @@
 return {
   'neovim/nvim-lspconfig',
+  event = { 'BufReadPre', 'BufNewFile' },
   dependencies = {
     {
       'folke/lazydev.nvim',
@@ -12,7 +13,7 @@ return {
         },
       },
     },
-    'saghen/blink.cmp',
+    { 'saghen/blink.cmp' },
     {
       'j-hui/fidget.nvim',
       tag = 'v1.0.0', -- Make sure to update this to something recent!
@@ -22,43 +23,12 @@ return {
             windblend = 0,
           },
         },
-        -- options
       },
     },
   },
-  opts = {
-    servers = {
-      lua_ls = {
-        settings = {
-          Lua = {
-            diagnostics = {
-              globals = { 'vim' },
-            },
-            completion = {
-              callSnippet = 'Replace',
-            },
-          },
-        },
-      },
-      ts_ls = {},
-      emmet_ls = {
-        filetypes = {
-          'html',
-          'typescriptreact',
-          'javascriptreact',
-          'css',
-          'sass',
-          'scss',
-          'less',
-          'svelte',
-        },
-      },
-      html = {},
-      cssls = {},
-    },
-  },
-  config = function(_, opts)
+  config = function()
     local lspconfig = require('lspconfig')
+    local mason_lspconfig = require('mason-lspconfig')
 
     vim.api.nvim_create_autocmd('LspAttach', {
       group = vim.api.nvim_create_augroup('UserLspConfig', {}),
@@ -107,15 +77,52 @@ return {
       end,
     })
 
+    -- config diagnostic signs
     local signs = { Error = ' ', Warn = ' ', Hint = '󰠠 ', Info = ' ' }
     for type, icon in pairs(signs) do
       local hl = 'DiagnosticSign' .. type
       vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = '' })
     end
 
-    for server, config in pairs(opts.servers) do
-      config.capabilities = require('blink.cmp').get_lsp_capabilities(config.capabilities)
-      lspconfig[server].setup(config)
-    end
+    -- enable completion
+    local capabilities = require('blink.cmp').get_lsp_capabilities()
+
+    mason_lspconfig.setup_handlers({
+      function(server_name)
+        lspconfig[server_name].setup({
+          capabilities = capabilities,
+        })
+      end,
+      ['lua_ls'] = function()
+        lspconfig['lua_ls'].setup({
+          capabilities = capabilities,
+          settings = {
+            Lua = {
+              diagnostics = {
+                globals = { 'vim' },
+              },
+              completion = {
+                callSnippet = 'Replace',
+              },
+            },
+          },
+        })
+      end,
+      ['emmet_ls'] = function()
+        lspconfig['emmet_ls'].setup({
+          capabilities = capabilities,
+          filetypes = {
+            'html',
+            'typescriptreact',
+            'javascriptreact',
+            'css',
+            'sass',
+            'scss',
+            'less',
+            'svelte',
+          },
+        })
+      end,
+    })
   end,
 }
