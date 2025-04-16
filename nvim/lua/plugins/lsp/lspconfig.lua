@@ -120,6 +120,7 @@ return {
             'scss',
             'less',
             'svelte',
+            'htmldjango'
           },
         })
       end,

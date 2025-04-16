@@ -12,6 +12,7 @@ return {
         javascriptreact = { 'prettier' },
         typescriptreact = { 'prettier' },
         html = { 'prettier' },
+        htmldjango = { 'prettier' },
         css = { 'prettier' },
         python = { 'isort', 'black' },
       },
