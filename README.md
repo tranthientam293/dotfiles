@@ -39,3 +39,11 @@ This setup uses a **custom theme**, but you can use any of the [available Oh My 
   cp path/to/user.omp.toml ~/Documnets/PowerShell
 ```
 3. Restart PowerShell to apply the new configuration.
+
+## 💻 Windows Terminal
+1. Install **Windows Terminal** from the Microsoft Store.
+2. Open **Settings**.
+3. Click **Open JSON file**.
+![](./images/terminal_settings.png)
+4. Paste custom settings into the JSON file.
+5. Save the file and restart the Windows Terminal to apply changes.
